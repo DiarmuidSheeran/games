@@ -1,0 +1,14 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: aqua;
+  }
+
+body {
+  background-color: black;
+}
+
+body, h1{
+    color:rgb(246, 245, 247);
+  }
