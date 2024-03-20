@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
+{% load cloudinary %}
 
 {% block title %} Home {% endblock %}
 {% block content %}
 
 <div class="container-fluid mb-4 text-center">
     <h1 class="text-dark">Home</h1>
+    <a href="{% url 'space_invaders' %}">
+        <h4 class="text-black mb-4">Space Invaders</h4>
+    </a>
 </div>
 {% endblock %}

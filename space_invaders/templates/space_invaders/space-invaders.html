@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% load cloudinary %}
+
+{% block title %} Home {% endblock %}
+{% block content %}
+
+<div class="container-fluid mb-4 text-center">
+    <h1 class="text-dark">Space Invaders</h1>
+    <a href="{% url 'index' %}">
+        <h2 class="text-black mb-4">Home</h2>
+    </a>
+    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo">
+</div>
+{% endblock %}
