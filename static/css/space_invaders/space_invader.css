@@ -28,7 +28,7 @@ body, h1 {
 
 /* Shooter */
 .shooter {
-    background-color: bisque;
+    background-image: url("/static/images/space-invaders/shooter.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
@@ -37,7 +37,7 @@ body, h1 {
 
 /* Laser */
 .laser {
-    background-color: #383737;
+    background-image: url("/static/images/space-invaders/laser.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
@@ -46,7 +46,7 @@ body, h1 {
 
 /* Invader */
 .invader {
-    background-color: aliceblue;
+    background-image: url("/static/images/space-invaders/alien.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
@@ -55,7 +55,7 @@ body, h1 {
 
 /* Boom */
 .boom {
-    background-color: aqua;
+    background-image: url("/static/images/space-invaders/boom.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
