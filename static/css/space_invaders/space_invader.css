@@ -28,7 +28,7 @@ body, h1 {
 
 /* Shooter */
 .shooter {
-    background-image: url("/static/images/space-invaders/shooter.png");
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1710974082/static/images/space-invaders/shooter.21edd0304df4.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
@@ -37,7 +37,7 @@ body, h1 {
 
 /* Laser */
 .laser {
-    background-image: url("/static/images/space-invaders/laser.png");
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1710974081/static/images/space-invaders/laser.3d9cee9fead0.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
@@ -46,7 +46,7 @@ body, h1 {
 
 /* Invader */
 .invader {
-    background-image: url("/static/images/space-invaders/alien.png");
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1710974079/static/images/space-invaders/alien.e0880135587b.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
@@ -55,7 +55,7 @@ body, h1 {
 
 /* Boom */
 .boom {
-    background-image: url("/static/images/space-invaders/boom.png");
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1710974080/static/images/space-invaders/boom.2397da6be153.png");
     background-size: contain; 
     background-repeat: no-repeat; 
     width: 100%; 
