@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import GameScore
 
-# Register your models here.
+@admin.register(GameScore)
+class GameScoreAdmin(admin.ModelAdmin):
+    list_display = ('user_name', 'score', 'created_at')
+    search_fields = ('user_name',)
+    list_filter = ('created_at',)
