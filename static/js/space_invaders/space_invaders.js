@@ -18,6 +18,7 @@ var game_won = false;
 const levelSelect = document.getElementById('level');
 const moveLeftBtn = document.getElementById('moveLeftBtn');
 const moveRightBtn = document.getElementById('moveRightBtn');
+const footer = document.getElementById('main-footer');
 
 mainBanner.style.display = 'none';
 
@@ -59,6 +60,7 @@ function startGame(event) {
     }
     if (!gameStarted) {
         gameStarted = true;
+        footer.style.display = 'none';
         scoreText.style.display = 'block';
         resultDisplay.style.display = 'block';
         startBtn.style.display = 'none';
@@ -156,7 +158,8 @@ function startGame(event) {
                 scoreText.innerHTML = 'GAME OVER!';
                 resultDisplay.innerHTML = 'SCORE: ' + result;
                 clearInterval(invadersId);
-            
+                moveLeftBtn.style.display = 'none';
+                moveRightBtn.style.display = 'none';
                 document.removeEventListener('keydown', moveShooter);
                 document.removeEventListener('keydown', shoot);
                 document.removeEventListener('click', shoot);
@@ -167,6 +170,7 @@ function startGame(event) {
 
                
                 setTimeout(() => {
+                    footer.style.display = 'block';
                     recordResult.style.display = 'block';
                     resetBtn.style.display = 'block';
                     resultForm.style.display = 'block';
@@ -238,16 +242,28 @@ function endGame() {
     scoreText.innerHTML = game_won ? 'YOU WIN! <br>' : 'GAME OVER! <br>';
     resultDisplay.innerHTML = 'SCORE: ' + result;
     game_won = true;
+    
     setTimeout(() => {
+        footer.style.display = 'block';
         recordResult.style.display = 'block';
         resetBtn.style.display = 'block';
         resultForm.style.display = 'block';
         document.getElementById('scoreInput').value = result;
     }, 1000);
+    
+    // Remove event listeners
+    moveLeftBtn.style.display = 'none';
+    moveRightBtn.style.display = 'none';
+    document.removeEventListener('keydown', moveShooter);
+    document.removeEventListener('keydown', shoot);
+    document.removeEventListener('click', shoot);
 
-    squares[currentShooterIndex].classList.remove('shooter');
+    // Display footer and other elements
+    
+    // Remove invaders
     const squares = document.querySelectorAll('.grid div');
     squares.forEach(square => square.classList.remove('invader'));
+    squares[currentShooterIndex].classList.remove('shooter');
 
     
 }
