@@ -50,11 +50,11 @@
             </div>
             <div class="row">
                 <div class="card text-white text-center leaderboard">
-                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo">
-                    <div class="level-selection mt-2">
-                        <label for="level"><h4>Select Level:</h4></label>
-                        <br>
-                        <select class="w-100 text-center form-select fs-4 font-weight-bold" id="level" name="level">
+                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-2">
+                    <button class="btn btn-lg btn-danger border border-light mt-4 text-light" id="startBtn"><strong>Start Game</strong> </button>
+                    <div class="level-selection mt-2 bg-danger border border-light pb-1 pt-2">
+                        <label for="level"><strong>Select Level:</strong></label>
+                        <select class="w-100 bg-light text-center form-select fs-4 font-weight-bold" id="level" name="level">
                             <option value="1" class="font-weight-bold">Level 1</option>
                             <option value="2" class="font-weight-bold">Level 2</option>
                             <option value="3" class="font-weight-bold">Level 3</option>
@@ -63,7 +63,7 @@
                             <option value="6" class="font-weight-bold">Extreme</option>
                         </select>
                     </div>
-                    <button class="btn btn-lg btn-light border border-danger mt-4 text-dark" id="startBtn"><strong>Start Game</strong> </button>
+                    
                    
                     <h2 class="leaderboard text-white text-decoration-underline"><strong>Leaderboards</strong></h2>
                     <ul class="leaderboard">
@@ -83,8 +83,8 @@
             </div>
             <div class="row mt-4 mb-4">
                 <div class="col-12 d-flex align-items-center justify-content-center">
-                    <button class="btn btn-lg btn-danger mr-2 d-lg-none" id="moveLeftBtn"><i class="fa-solid fa-left-long" style="color: #ffffff;"></i></button>
-                    <button class="btn btn-lg btn-danger ml-2 d-lg-none" id="moveRightBtn"><i class="fa-solid fa-right-long" style="color: #ffffff;"></i></button>
+                    <button class="btn btn-lg btn-danger mr-4 d-lg-none" id="moveLeftBtn" style="display: none;"><i class="fa-solid fa-left-long" style="color: #ffffff;"></i></button>
+                    <button class="btn btn-lg btn-danger ml-4 d-lg-none" id="moveRightBtn" style="display: none;"><i class="fa-solid fa-right-long" style="color: #ffffff;"></i></button>
                 </div>
             </div>
 </div>

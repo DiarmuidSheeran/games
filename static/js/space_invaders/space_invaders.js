@@ -63,9 +63,11 @@ function startGame(event) {
         footer.style.display = 'none';
         scoreText.style.display = 'block';
         resultDisplay.style.display = 'block';
+        moveLeftBtn.style.display = 'block';
+        moveRightBtn.style.display = 'block';
         startBtn.style.display = 'none';
         scorecard.style.display = 'block';
-        mainBanner.style.display = 'block';
+        mainBanner.style.display = 'none';
         document.querySelectorAll('.leaderboard').forEach(element => {
             element.style.display = 'none';
         });
@@ -250,7 +252,7 @@ function endGame() {
         resultForm.style.display = 'block';
         document.getElementById('scoreInput').value = result;
     }, 1000);
-    
+
     // Remove event listeners
     moveLeftBtn.style.display = 'none';
     moveRightBtn.style.display = 'none';
