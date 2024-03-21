@@ -16,6 +16,8 @@ let results = 0;
 let result = 0;
 var game_won = false;
 const levelSelect = document.getElementById('level');
+const moveLeftBtn = document.getElementById('moveLeftBtn');
+const moveRightBtn = document.getElementById('moveRightBtn');
 
 mainBanner.style.display = 'none';
 
@@ -114,7 +116,13 @@ function startGame(event) {
             }
             squares[currentShooterIndex].classList.add('shooter');
         }
-
+        moveLeftBtn.addEventListener('click', function() {
+            moveShooter({ key: 'ArrowLeft' }); 
+        });
+        
+        moveRightBtn.addEventListener('click', function() {
+            moveShooter({ key: 'ArrowRight' }); 
+        });
         document.addEventListener('keydown', moveShooter);
 
         function moveInvaders() {
