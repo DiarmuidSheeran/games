@@ -50,10 +50,10 @@
             </div>
             <div class="row">
                 <div class="card text-white text-center leaderboard">
-                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-2">
-                    <button class="btn btn-lg btn-danger border border-light mt-4 text-light" id="startBtn"><strong>Start Game</strong> </button>
-                    <div class="level-selection mt-2 bg-danger border border-light pb-1 pt-2">
-                        <label for="level"><strong>Select Level:</strong></label>
+                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-4">
+                    
+                    <div class="level-selection mt-2 bg-danger border border-light rounded pt-1 text-light">
+                        <label for="level"><h4><strong>Select Level:</strong></h4><small><strong>Scores Multiply by Level Difficulty</strong></small></label>
                         <select class="w-100 bg-light text-center form-select fs-4 font-weight-bold" id="level" name="level">
                             <option value="1" class="font-weight-bold">Level 1</option>
                             <option value="2" class="font-weight-bold">Level 2</option>
@@ -62,7 +62,9 @@
                             <option value="5" class="font-weight-bold">Level 5</option>
                             <option value="6" class="font-weight-bold">Extreme</option>
                         </select>
+                        <button class="btn btn-lg btn-danger border border-light mt-2 mb-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
                     </div>
+                   
                     
                    
                     <h2 class="leaderboard text-white text-decoration-underline"><strong>Leaderboards</strong></h2>
@@ -71,7 +73,7 @@
                             <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
                         {% endfor %}
                     </ul>
-                    <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-lg btn-info mb-4 border border-light">
+                    <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-secondary mb-4 border border-light">
                         <strong>View All</strong>
                     </a>
                 </div>
