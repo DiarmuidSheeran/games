@@ -6,10 +6,11 @@
 {% block content %}
 
 <div class="container-fluid mb-4 text-center">
-    <h1 class="text-light">Retro Arcade Home</h1>
-    <h3><i class="fa-solid fa-gamepad fa-beat-fade fa-xl" style="color: #ffffff;"></i></h3>
-    <h4 class="text-black text-light">Choose a Game Below!</h4>
-    <i class="fa-sharp fa-solid fa-arrow-down fa-bounce fa-xl" style="color: #ffffff;"></i>
+    <div class="card bg-warning mt-2 border border-light rounded pt-2 pb-2">
+        <strong><h1 class="text-dark header-fonts">Retro Arcade</h1></strong>
+        <strong><h4 class="text-dark text-light header-fonts">Choose a Game Below!</h4></strong>
+        <strong><i class="fa-sharp fa-solid fa-arrow-down fa-bounce fa-xl mb-4 mt-2 header-fonts" style="color: #000000;"></i></strong>
+    </div>
     <div class="card bg-danger mt-2 border border-light rounded pt-2 pb-2">
         <a href="{% url 'space_invaders' %}">
             <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="img-fluid">
