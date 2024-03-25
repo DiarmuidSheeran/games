@@ -4,10 +4,21 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
-    <h1>User Profile</h1>
-    <p>Username: {{ profile.user.username }}</p>
-    <p>Bio: {{ profile.bio }}</p>
-    {% if profile.avatar %}
-        <img src="{{ profile.avatar.url }}" alt="Avatar">
-    {% endif %}
+    <div class="container mb-4 text-center justify-content-center">  
+        <h1>Retro Games</h1>
+        <h3>User Profile</h3>
+        <h5>Username: {{ profile.user.username }}</h5>
+        <p>Bio: {{ profile.bio }}</p>
+        
+        <h3>Game Scores</h3>
+        <ul>
+            {% if profile.user.gamescore_set.all %}
+                {% for game_score in profile.user.gamescore_set.all %}
+                    <li>{{ game_score.score }} - {{ game_score.created_at }}</li>
+                {% endfor %}
+            {% else %}
+                <li>No game scores yet.</li>
+            {% endif %}
+        </ul>
+    </div>
 {% endblock %}

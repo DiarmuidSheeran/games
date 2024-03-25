@@ -13,6 +13,11 @@ def space_invaders(request):
     if request.method == 'POST':
         form = GameScoreForm(request.POST)
         if form.is_valid():
+            current_user = request.user
+            if current_user.is_authenticated:
+                form.instance.user = current_user
+            else:
+                form.instance.user_name = form.cleaned_data.get('user_name')
             form.save() 
             return redirect('space_invaders')
     else:
