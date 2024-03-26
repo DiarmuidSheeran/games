@@ -63,15 +63,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card bg-danger">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Space Invaders</h5>
+                        <h5 class="card-title text-center">GAME COMING SOON!</h5>
                         <ul class="list-unstyled">
-                            {% if profile.user.gamescore_set.all %}
-                                {% for game_score in profile.user.gamescore_set.all %}
-                                    <li class="border-bottom border-light mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
-                                {% endfor %}
-                            {% else %}
-                                <li>No game scores yet.</li>
-                            {% endif %}
+                           
                         </ul>
                     </div>
                 </div>
@@ -79,15 +73,9 @@
             <div class="col-md-4 mb-3">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Space Invaders</h5>
+                        <h5 class="card-title text-center">GAME COMING SOON!</h5>
                         <ul class="list-unstyled">
-                            {% if profile.user.gamescore_set.all %}
-                                {% for game_score in profile.user.gamescore_set.all %}
-                                    <li class="border-bottom border-light mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
-                                {% endfor %}
-                            {% else %}
-                                <li>No game scores yet.</li>
-                            {% endif %}
+                           
                         </ul>
                     </div>
                 </div>
