@@ -18,15 +18,18 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="border-bottom: dashed black 2px;"><i class="fa-solid fa-user-ninja" style="color: #ff0000;"></i> Username:</h5>
-                        <p class="card-text">{{ profile.user.username }}</p> 
+                        <p class="card-text"><strong>{{ profile.user.username }}</strong></p> 
                     </div>
                 </div>
             </div>
             <div class="col-md-9 mb-3">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title" style="border-bottom: dashed black 2px;"><i class="fa-solid fa-comment-dots fa-flip-horizontal" style="color: #ff0000;"></i> Bio:</h5>
+                        <h5 class="card-title" style="border-bottom: dashed black 2px;"><i class="fa-solid fa-comment-dots fa-flip-horizontal" style="color: #ff0000;"></i> Bio: </h5>
                         <p class="card-text">{{ profile.bio }}</p>
+                        {% if request.user == profile.user %}
+                            <a href="{% url 'edit_bio' %}" class="btn btn-primary btn-sm">Edit Bio</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -41,9 +44,10 @@
 
         <div class="row justify-content-center">
             <div class="col-md-4 mb-3">
-                <div class="card bg-warning">
+                <div class="card bg-danger">
                     <div class="card-body">
                         <h5 class="card-title text-center">Space Invaders</h5>
+                        <p class="text-center">Your Recorded Scores</p>
                         <ul class="list-unstyled" id="game-scores">
                             {% for game_score in profile.user.gamescore_set.all %}
                                 {% if forloop.counter <= 4 %}
@@ -61,11 +65,12 @@
                 </div>
             </div>
             <div class="col-md-4 mb-3">
-                <div class="card bg-danger">
+                <div class="card bg-success">
                     <div class="card-body">
                         <h5 class="card-title text-center">GAME COMING SOON!</h5>
+                        <p class="text-center">Currently in Development</p>
                         <ul class="list-unstyled">
-                           
+                            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711487172/coming-soon_izekzy.png' }}" alt="Space Invaders Logo" class="img-fluid">
                         </ul>
                     </div>
                 </div>
@@ -73,15 +78,19 @@
             <div class="col-md-4 mb-3">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <h5 class="card-title text-center">GAME COMING SOON!</h5>
+                        <h5 class="card-title text-center">GAME COMING SOON!</h5> 
+                        <p class="text-center">Currently in Development</p>
                         <ul class="list-unstyled">
-                           
+                            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711487172/coming-soon_izekzy.png' }}" alt="Space Invaders Logo" class="img-fluid">
                         </ul>
                     </div>
                 </div>
             </div>
          </div>
     </div>
+    <br>
+    <br>
+    <br>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

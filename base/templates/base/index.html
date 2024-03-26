@@ -9,13 +9,26 @@
     <div class="card bg-warning mt-2 border border-light rounded pt-2 pb-2">
         <strong><h1 class="text-dark header-fonts">Retro Arcade</h1></strong>
         <strong><h4 class="text-dark text-light header-fonts">Choose a Game Below!</h4></strong>
-        <strong><i class="fa-solid fa-arrow-down fa-2xl" style="color: #000000;"></i></strong>
+        <strong><i class="fa-solid fa-arrow-down fa-bounce fa-2xl" style="color: #000000;"></i></strong>
     </div>
     <div class="card bg-danger mt-2 border border-light rounded pt-2 pb-2">
         <a href="{% url 'space_invaders' %}">
             <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="img-fluid">
         </a>
     </div>
-    
+    <div class="card bg-success mt-2 border border-light rounded pt-2 pb-2">
+        <h2>Game in Development</h2>
+        <a href="#">
+            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711487172/coming-soon_izekzy.png' }}" alt="Space Invaders Logo" class="img-fluid">
+        </a>
+    </div>
+    <div class="card bg-info mt-2 border border-light rounded pt-2 pb-2">
+        <h2>Game in Development</h2>
+        <a href="#">
+            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711487172/coming-soon_izekzy.png' }}" alt="Space Invaders Logo" class="img-fluid">
+        </a>
+    </div>
 </div>
+<br>
+<br>
 {% endblock %}

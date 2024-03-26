@@ -13,82 +13,82 @@
 
 {% block content %}
 <div class="container mb-4 text-center justify-content-center">      
-            <div class="row mb-2">
-                <div class="col-12 d-flex justify-content-center">
-                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="img-fluid main-banner-game">
+    <div class="row mb-2">
+        <div class="col-12 d-flex justify-content-center">
+            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="img-fluid main-banner-game">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col col-md-12">
+            <div class="card bg-black text-white text-center scorecard mt-4" style="display: none;">
+                <h2 class="score scoreboard mt-2" style="display: none;">Score</h2> 
+                <h2 class="results scoreboard" style="display: none;"> 0</h2>
+                
+                <div class="col col-md-12 mt-4">
+                    <h2 class="recordResult" style="display: none;">RECORD YOUR SCORE BELOW! <br> <i class="fa-solid fa-arrow-down" style="color: #ffffff;"></i></h2>
                 </div>
-            </div>
-            <div class="row mt-4">
                 <div class="col col-md-12">
-                    <div class="card bg-black text-white text-center scorecard mt-4" style="display: none;">
-                        <h2 class="score scoreboard mt-2" style="display: none;">Score</h2> 
-                        <h2 class="results scoreboard" style="display: none;"> 0</h2>
-                       
-                        <div class="col col-md-12 mt-4">
-                            <h2 class="recordResult" style="display: none;">RECORD YOUR SCORE BELOW! <br> <i class="fa-solid fa-arrow-down" style="color: #ffffff;"></i></h2>
+                    <form class="form mt-6" method="post" style="display: none;">
+                        {% csrf_token %}
+                        <div class="form-group d-flex justify-content-center"> 
+                            <input type="text" name="user_name" placeholder="Enter your name" class="mt-2 styled-input border-4 border-success rounded">
                         </div>
-                        <div class="col col-md-12">
-                            <form class="form mt-6" method="post" style="display: none;">
-                                {% csrf_token %}
-                                <div class="form-group d-flex justify-content-center"> 
-                                    <input type="text" name="user_name" placeholder="Enter your name" class="mt-2 styled-input border-4 border-success rounded">
-                                </div>
-                                <div class="form-group"> 
-                                    <input type="hidden" name="score" id="scoreInput">
-                                </div>
-                                <div class="form-group d-flex justify-content-center"> 
-                                    <button type="submit" class="btn btn-success text-white w-50">Submit</button>
-                                </div>
-                            </form>
+                        <div class="form-group"> 
+                            <input type="hidden" name="score" id="scoreInput">
                         </div>
-                        <div class="col-12 d-flex align-items-center justify-content-center">
-                            <button class="btn btn-lg btn-danger mt-4 mb-4" id="resetBtn" style="display: none;">Reset Game</button>
+                        <div class="form-group d-flex justify-content-center"> 
+                            <button type="submit" class="btn btn-success text-white w-50">Submit</button>
                         </div>
-                    </div>
-                    
+                    </form>
                 </div>
-            </div>
-            <div class="row">
-                <div class="card text-white text-center leaderboard">
-                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-4">
-                    
-                    <div class="level-selection mt-2 bg-danger border border-light rounded pt-1 text-light">
-                        <label for="level"><h4><strong>Select Level:</strong></h4><small><strong>Scores Multiply by Level Difficulty</strong></small></label>
-                        <select class="w-100 bg-light text-center form-select fs-4 font-weight-bold" id="level" name="level">
-                            <option value="1" class="font-weight-bold">Level 1</option>
-                            <option value="2" class="font-weight-bold">Level 2</option>
-                            <option value="3" class="font-weight-bold">Level 3</option>
-                            <option value="4" class="font-weight-bold">Level 4</option>
-                            <option value="5" class="font-weight-bold">Level 5</option>
-                            <option value="6" class="font-weight-bold">Extreme</option>
-                        </select>
-                        <button class="btn btn-lg btn-danger border border-light mt-2 mb-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
-                    </div>
-                   
-                    
-                   
-                    <h2 class="leaderboard text-white text-decoration-underline"><strong>Leaderboards</strong></h2>
-                    <ul class="leaderboard">
-                        {% for game_score in game_scores %}
-                            <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
-                        {% endfor %}
-                    </ul>
-                    <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-secondary mb-4 border border-light">
-                        <strong>View All</strong>
-                    </a>
-                </div>
-            </div>
-            <div class="row mt-4 mb-4">
                 <div class="col-12 d-flex align-items-center justify-content-center">
-                    <div class="grid"></div>
+                    <button class="btn btn-lg btn-danger mt-4 mb-4" id="resetBtn" style="display: none;">Reset Game</button>
                 </div>
             </div>
-            <div class="row mt-4 mb-4">
-                <div class="col-12 d-flex align-items-center justify-content-center">
-                    <button class="btn btn-lg btn-danger mr-4 d-lg-none" id="moveLeftBtn" style="display: none;"><i class="fa-solid fa-left-long" style="color: #ffffff;"></i></button>
-                    <button class="btn btn-lg btn-danger ml-4 d-lg-none" id="moveRightBtn" style="display: none;"><i class="fa-solid fa-right-long" style="color: #ffffff;"></i></button>
-                </div>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="card text-white text-center leaderboard">
+            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-4">
+            
+            <div class="level-selection mt-2 bg-danger border border-light rounded pt-1 text-light">
+                <label for="level"><h4><strong>Select Level:</strong></h4><small><strong>Scores Multiply by Level Difficulty</strong></small></label>
+                <select class="w-100 bg-light text-center form-select fs-4 font-weight-bold" id="level" name="level">
+                    <option value="1" class="font-weight-bold">Level 1</option>
+                    <option value="2" class="font-weight-bold">Level 2</option>
+                    <option value="3" class="font-weight-bold">Level 3</option>
+                    <option value="4" class="font-weight-bold">Level 4</option>
+                    <option value="5" class="font-weight-bold">Level 5</option>
+                    <option value="6" class="font-weight-bold">Extreme</option>
+                </select>
+                <button class="btn btn-lg btn-danger border border-light mt-2 mb-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
             </div>
+            
+            
+            
+            <h2 class="leaderboard text-white text-decoration-underline"><strong>Leaderboards</strong></h2>
+            <ul class="leaderboard">
+                {% for game_score in game_scores %}
+                    <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-secondary mb-4 border border-light">
+                <strong>View All</strong>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-4 mb-4">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="grid"></div>
+        </div>
+    </div>
+    <div class="row mt-4 mb-4">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <button class="btn btn-lg btn-danger mr-4 d-lg-none" id="moveLeftBtn" style="display: none;"><i class="fa-solid fa-left-long" style="color: #ffffff;"></i></button>
+            <button class="btn btn-lg btn-danger ml-4 d-lg-none" id="moveRightBtn" style="display: none;"><i class="fa-solid fa-right-long" style="color: #ffffff;"></i></button>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
