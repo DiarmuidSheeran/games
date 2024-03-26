@@ -49,14 +49,14 @@
                                 {% if forloop.counter <= 4 %}
                                     <li class="border-bottom border-dark mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
                                 {% else %}
-                                    <li class="border-bottom border-dark d-none more-scores mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
+                                    <li class="border-bottom border-dark d-none game-one-more-scores mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
                                 {% endif %}
                             {% endfor %}
                         </ul>
                         {% if profile.user.gamescore_set.all.count > 4 %}
-                            <button class="btn btn-primary btn-block mt-3" id="expandButton">Show More Scores</button>
+                            <button class="btn btn-primary btn-block mt-3" id="expandButtonGameOne">Show More Scores</button>
                         {% endif %}
-                        <button class="btn btn-secondary btn-block mt-3 d-none" id="closeButton">Close</button>
+                        <button class="btn btn-secondary btn-block mt-3 d-none" id="closeButtonGameOne">Close</button>
                     </div>
                 </div>
             </div>
@@ -97,24 +97,24 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        var expandButton = document.querySelector("#expandButton");
-        var closeButton = document.querySelector("#closeButton");
-        var hiddenScores = document.querySelectorAll(".more-scores");
+        var expandButtonGameOne = document.querySelector("#expandButtonGameOne");
+        var closeButtonGameOne = document.querySelector("#closeButtonGameOne");
+        var hiddenScoresGameOne = document.querySelectorAll(".game-one-more-scores");
 
-        expandButton.addEventListener("click", function() {
-            hiddenScores.forEach(function(score) {
+        expandButtonGameOne.addEventListener("click", function() {
+            hiddenScoresGameOne.forEach(function(score) {
                 score.classList.remove("d-none");
             });
-            expandButton.classList.add("d-none"); 
-            closeButton.classList.remove("d-none"); // Show the close button
+            expandButtonGameOne.classList.add("d-none"); 
+            closeButtonGameOne.classList.remove("d-none"); // Show the close button
         });
 
-        closeButton.addEventListener("click", function() {
-            hiddenScores.forEach(function(score) {
+        closeButtonGameOne.addEventListener("click", function() {
+            hiddenScoresGameOne.forEach(function(score) {
                 score.classList.add("d-none");
             });
-            closeButton.classList.add("d-none"); // Hide the close button
-            expandButton.classList.remove("d-none"); // Show the expand button
+            closeButtonGameOne.classList.add("d-none"); // Hide the close button
+            expandButtonGameOne.classList.remove("d-none"); // Show the expand button
         });
     });
     </script>
