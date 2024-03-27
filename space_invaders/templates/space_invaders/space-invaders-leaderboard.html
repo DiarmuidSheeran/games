@@ -14,19 +14,23 @@
 {% block content %}
 <div class="container mb-4 text-center justify-content-center" style="margin-bottom: 100px;">      
     <div class="row">
-        <div class="card text-white text-center leaderboard h-100" style="margin: 0; margin-bottom: 100px;">
-            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo">
-            <a href="{% url 'space_invaders' %}" class="btn btn-lg btn-light border border-danger mt-4 text-dark"><strong>Return to Game</strong></a>
-            <h2 class="leaderboard text-white text-decoration-underline"><strong>Leaderboards</strong></h2>
-            <ul class="leaderboard">
-                {% for game_score in game_scores %}
-                    <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
-                {% endfor %}
-            </ul>
+        <div class="col col-md-12">
+            <div class="card text-white text-center leaderboard h-100" style="margin: 0; margin-bottom: 100px;">
+                <div class="bg-danger">
+                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo">
+                </div>
+                <a href="{% url 'space_invaders' %}" class="btn btn-lg btn-light border border-danger mt-4 text-dark"><strong>Return to Game</strong></a>
+                <h2 class="leaderboard text-white text-decoration-underline"><strong>Leaderboards</strong></h2>
+                <ul class="leaderboard">
+                    {% for game_score in game_scores %}
+                        <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
     <div class="row" style="margin-bottom: 100px;">
-        <div class="col text-center">
+        <div class="col col-md-12 text-center">
             <div class="pagination">
                 <span class="step-links">
                     {% if game_scores.has_previous %}
