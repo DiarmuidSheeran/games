@@ -54,9 +54,9 @@
                 <div class="bg-danger">
                     <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-4">
                 </div>
-                <div class="w-100 level-selection text-light mt-2 bg-warning text-dark">
+                <div class="w-100 level-selection text-light mt-2 bg-light text-dark">
                     <label for="level"><h4><strong>Select Level:</strong></h4></label>
-                    <select class="mr-2 w-100 text-center mb-2" id="level" name="level">
+                    <select class="mr-2 w-100 text-center mb-2 bg-danger text-light" id="level" name="level">
                         <option value="1" class="font-weight-bold">Level 1</option>
                         <option value="2" class="font-weight-bold">Level 2</option>
                         <option value="3" class="font-weight-bold">Level 3</option>
@@ -72,13 +72,13 @@
                     
                 </div>
                 
-                <h2 class="leaderboard text-dark text-decoration-underline pb-3 mt-2 bg-light" style="border-bottom: red 4px solid; border-top: red 4px solid;"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
+                <h2 class="leaderboard text-light text-decoration-underline pb-3 mt-2 bg-danger" style="border-bottom: red 4px solid; border-top: red 4px solid;"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
                 <ul class="leaderboard">
                     {% for game_score in game_scores %}
                         <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
                     {% endfor %}
                 </ul>
-                <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-light mb-4 border border-danger">
+                <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-primary mb-4">
                     <strong>View All</strong>
                 </a>
             </div>
