@@ -11,8 +11,8 @@
                 <div class="card-header bg-primary text-white text-center">
                     <h1 class="mb-0">{% trans "Sign Up" %}</h1>
                 </div>
-                <div class="card-body bg-secondary">
-                    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}" class="text-warning">sign in</a>.{% endblocktrans %}</p>
+                <div class="card-body bg-light text-dark">
+                    
                     <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
                         {% csrf_token %}
                         {{ form.as_p }}
@@ -23,6 +23,9 @@
                             <button type="submit" class="btn btn-primary">{% trans "Sign Up" %} &raquo;</button>
                         </div>
                     </form>
+                </div>
+                <div class="card-footer bg-primary text-white text-center">
+                    <p class="text-center">{% blocktrans %}Already have an account? Then please <br><a href="{{ login_url }}" class="text-warning">SIGN IN HERE</a>.{% endblocktrans %}</p>
                 </div>
             </div>
         </div>
