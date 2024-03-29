@@ -9,8 +9,11 @@
     <script src="{% static 'js\pacman\pacman.js' %}"></script>
 {% endblock %}
 
-{% block title %}Pacman{% endblock %}
+{% block title %}pac-man{% endblock %}
 
 {% block content %}
 
+    <div class="grid"></div>
+    <h3>Score: <span id="score"></span> </h3>
+    <h3>Level: <span id="level"></span> </h3>
 {% endblock %}
