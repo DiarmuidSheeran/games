@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createBoard() {
         for (let i = 0; i < layout.length; i++ ) {
             const square = document.createElement('div')
+            square.id = i
             grid.appendChild(square)
             squares.push(square)
 
@@ -67,4 +68,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     createBoard()
 
+    // Create charecters
+    // Draw pac-man onto the board
+    let pacmanCurrentIndex = 490
+    squares[pacmanCurrentIndex].classList.add('pac-man')
+
+    function movePacman(e) {
+        squares[pacmanCurrentIndex].classList.remove('pac-man')
+        switch (e.key) {
+            case 'ArrowLeft':
+                pacmanCurrentIndex -=1
+                break
+            case 'ArrowRight':
+                pacmanCurrentIndex +=1
+                break
+            case 'ArrowUp':
+                pacmanCurrentIndex -=28
+                break
+            case 'ArrowDown':
+                pacmanCurrentIndex +=28
+                break
+        }
+        squares[pacmanCurrentIndex].classList.add('pac-man')
+    }
+    document.addEventListener('keyup', movePacman)
 })
