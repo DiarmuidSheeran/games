@@ -52,11 +52,11 @@
         <div class="col col-md-12">
             <div class="card text-white text-center leaderboard">
                 <div class="bg-danger">
-                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-4">
+                    <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="mb-4 img-fluid main-banner-game">
                 </div>
                 <div class="w-100 level-selection text-light mt-2 bg-light text-dark">
                     <label for="level"><h4><strong>Select Level:</strong></h4></label>
-                    <select class="mr-2 w-100 text-center mb-2 bg-danger text-light" id="level" name="level">
+                    <select class="mr-2 w-50 text-center mt-2 mb-2 bg-light text-dark h6 border border-dark" id="level" name="level">
                         <option value="1" class="font-weight-bold">Level 1</option>
                         <option value="2" class="font-weight-bold">Level 2</option>
                         <option value="3" class="font-weight-bold">Level 3</option>
@@ -64,12 +64,10 @@
                         <option value="5" class="font-weight-bold">Level 5</option>
                         <option value="6" class="font-weight-bold">Extreme</option>
                     </select>
-                    <br>
-                    <button class="btn btn-danger border border-light mb-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
-                    <br>
                     <small><strong>Scores Multiply by Level Difficulty</strong></small>
                     <br>
-                    
+                    <button class="btn btn-primary border border-light mb-2 mt-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
+                    <br>
                 </div>
                 
                 <h2 class="leaderboard text-light text-decoration-underline pb-3 mt-2 bg-danger" style="border-bottom: red 4px solid; border-top: red 4px solid;"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
