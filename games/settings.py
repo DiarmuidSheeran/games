@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'base',
     'space_invaders',
+    'pacman',
     'profiles',
     'django.contrib.sites',
     'allauth',
