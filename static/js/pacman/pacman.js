@@ -42,12 +42,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // 3 - power-pellet
     // 4 - empty
 
+    const squares = []
     // create board
     function createBoard() {
         for (let i = 0; i < layout.length; i++ ) {
             const square = document.createElement('div')
             grid.appendChild(square)
+            squares.push(square)
         }
     }
     createBoard()
+
+    console.log(squares)
 })
