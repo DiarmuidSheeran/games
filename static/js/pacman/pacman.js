@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // All my Ghosts
-    ghosts = [
+    const ghosts = [
         new Ghost ('blinky', 348, 250),
         new Ghost ('pinky', 376, 400),
         new Ghost ('inky', 351, 300),
@@ -200,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // If the ghost is currently scared and pacman is on it
             if(ghost.isScared && squares[ghost.currentIndex].classList.contains('pac-man')){
+                ghost.isScared = false
                 squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost')
                 ghost.currentIndex = ghost.startIndex
                 score += 100
