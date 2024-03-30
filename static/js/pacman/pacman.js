@@ -77,19 +77,47 @@ document.addEventListener('DOMContentLoaded', function() {
         squares[pacmanCurrentIndex].classList.remove('pac-man')
         switch (e.key) {
             case 'ArrowLeft':
-                pacmanCurrentIndex -=1
+                if (
+                    pacmanCurrentIndex % width !==0 && !squares[pacmanCurrentIndex -1].classList.contains('wall') && !squares[pacmanCurrentIndex -1].classList.contains('ghost-lair')
+                ) {
+                    pacmanCurrentIndex -=1 
+                }
+                if (squares[pacmanCurrentIndex -1] === squares[363]){
+                    pacmanCurrentIndex = 391
+                }
                 break
+
             case 'ArrowRight':
-                pacmanCurrentIndex +=1
+                if(
+                    pacmanCurrentIndex % width < width -1 && !squares[pacmanCurrentIndex + 1].classList.contains('wall') && !squares[pacmanCurrentIndex + 1].classList.contains('ghost-lair')
+                ) {
+                    pacmanCurrentIndex +=1
+                }
+                if (squares[pacmanCurrentIndex +1] === squares[392]){
+                    pacmanCurrentIndex = 364
+                }
+                
                 break
+
             case 'ArrowUp':
-                pacmanCurrentIndex -=28
+                if(
+                    pacmanCurrentIndex - width >= 0 && !squares[pacmanCurrentIndex - width].classList.contains('wall') && !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair')
+                ) {
+                    pacmanCurrentIndex -= width
+                }
+                
                 break
+
             case 'ArrowDown':
-                pacmanCurrentIndex +=28
+                if(
+                    pacmanCurrentIndex + width < width * width && !squares[pacmanCurrentIndex + width].classList.contains('wall') && !squares[pacmanCurrentIndex + width].classList.contains('ghost-lair')
+                ) {
+                    pacmanCurrentIndex += width
+                }
                 break
         }
         squares[pacmanCurrentIndex].classList.add('pac-man')
+        
     }
     document.addEventListener('keyup', movePacman)
 })
