@@ -138,8 +138,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if(squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
             score += 10
             scoreDisplay.innerHTML = score
+            ghosts.forEach(ghost => ghost.isScared = true)
+            setTimeout(unScareGhosts, 10000)
             squares[pacmanCurrentIndex].classList.remove('power-pellet')
         }
+    }
+
+    // Make the Ghosts Not Scared
+    function unScareGhosts() {
+        ghosts.forEach(ghost => ghost.isScared = false)
     }
 
     // Create ghosts using Constructer
@@ -180,13 +187,48 @@ document.addEventListener('DOMContentLoaded', function() {
             if (
                 !squares[ghost.currentIndex + direction].classList.contains('ghost') && !squares[ghost.currentIndex + direction].classList.contains('wall')
             ) {
-                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost')
+                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost')
                 ghost.currentIndex += direction
                 squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
                 // Else find a new random direction
             } else direction = directions[Math.floor(Math.random() * directions.length)]
+
+            // Only if the ghost is Currently Scared
+            if(ghost.isScared) {
+                squares[ghost.currentIndex].classList.add('scared-ghost')
+            }
+
+            // If the ghost is currently scared and pacman is on it
+            if(ghost.isScared && squares[ghost.currentIndex].classList.contains('pac-man')){
+                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost')
+                ghost.currentIndex = ghost.startIndex
+                score += 100
+                scoreDisplay.innerHTML = score
+                squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
+            }
+           checkForGameOver()
             
         }, ghost.speed)
+    }
+
+    // Check for game over
+    function checkForGameOver() {
+        if (
+            squares[pacmanCurrentIndex].classList.contains('ghost') && !squares[pacmanCurrentIndex].classList.contains('scared-ghost')
+        ){
+            ghosts.forEach(ghost => clearInterval(ghost.timerId))
+            document.removeEventListener('keyup', movePacman)
+            setTimeout(function(){ alert('Game Over')}, 500)
+        }
+    }
+
+    // Check for a Win
+    function checkForWin() {
+        if (score >= 274) {
+            ghosts.forEach(ghost => clearInterval(ghost.timerId))
+            document.removeEventListener('keyup', movePacman)
+            setTimeout(function(){ alert('You Win')}, 500)
+        }
     }
 
 
