@@ -4,7 +4,7 @@
     border: solid red;
     display: flex;
     flex-wrap: wrap;
-    background-color: white;
+    background-color: rgb(0, 0, 0);
 
 }
 
@@ -14,41 +14,68 @@
 }
 
 .pac-dot {
-    background-color: green;
-    border: 5px solid white;
+    background-color: rgb(255, 230, 0);
+    border: 7px solid rgb(0, 0, 0);
+    border-radius: 10px;
     box-sizing: border-box;
 }
 
 .wall {
-    background-color: blue;
+    background-color: rgb(115, 11, 252);
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .power-pellet {
-    background-color: green;
+    background-color: rgb(255, 230, 0);
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
+    box-sizing: border-box;
 }
 
 .blinky {
-    background-color: red;
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1711882200/blinky_odu8me.png");
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 100%;
 }
 
 .pinky {
-    background-color: pink;
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1711882200/pinky_hb9xlb.png");
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 100%;
 }
 
 .inky {
-    background-color: cyan;
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1711882200/inky_bcvakh.png");
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 100%;
 }
 
 .clyde {
-    background-color: orange;
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1711882200/clyde_flvs3e.png");
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 100%;
 }
 
 .pac-man {
-    background-color: rgb(168, 168, 4);
-    border-radius: 10px;
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1711880857/pac-man_lq3ncq.png");
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 100%;
 }
 
 .scared-ghost {
-    background-color: aquamarine;
+    background-image: url("https://res.cloudinary.com/drmbgol8n/image/upload/v1711882200/scared-ghost_jefaag.png");
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    width: 100%; 
+    height: 100%;
 }
