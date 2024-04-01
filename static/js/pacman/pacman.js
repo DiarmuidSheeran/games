@@ -137,22 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // What happens when you eat a power-pellet
-    function powerPelleteEaten(){
-        if(squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
-            score += 10
-            scoreDisplay.innerHTML = score
-            ghosts.forEach(ghost => ghost.isScared = true)
-            setTimeout(unScareGhosts, 10000)
-            squares[pacmanCurrentIndex].classList.remove('power-pellet')
-        }
-    }
-
-    // Make the Ghosts Not Scared
-    function unScareGhosts() {
-        ghosts.forEach(ghost => ghost.isScared = false)
-    }
-
     // Create ghosts using Constructer
     class Ghost {
         constructor(className, startIndex, speed){
@@ -167,12 +151,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // All my Ghosts
     const ghosts = [
-        new Ghost ('blinky', 348, 300),
-        new Ghost ('pinky', 376, 300),
-        new Ghost ('inky', 351, 300),
-        new Ghost ('clyde', 379, 300),
+        new Ghost ('blinky', 348, 200),
+        new Ghost ('pinky', 376, 200),
+        new Ghost ('inky', 351, 200),
+        new Ghost ('clyde', 379, 200),
     ]
 
+     // What happens when you eat a power-pellet
+    function powerPelleteEaten(){
+        if(squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
+            score += 10
+            scoreDisplay.innerHTML = score
+            ghosts.forEach(ghost => ghost.isScared = true)
+            setTimeout(unScareGhosts, 100000)
+            squares[pacmanCurrentIndex].classList.remove('power-pellet')
+        }
+    }
+
+
+    // Make the Ghosts Not Scared
+    function unScareGhosts() {
+        ghosts.forEach(ghost => ghost.isScared = false)
+    }
+    
     // Draw Ghosts Onto the Grid
     ghosts.forEach(ghost => {
         squares[ghost.currentIndex].classList.add(ghost.className)
@@ -191,6 +192,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
             // Save the previous index of the ghost
             const previousIndex = ghost.currentIndex;
+    
+            // If the ghost is still in the ghost lair and Pac-Man is on the same square, send the ghost back to the ghost lair
+            if (squares[ghost.currentIndex].classList.contains('pac-man')) {
+                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
+                score += 100
+                scoreDisplay.innerHTML = score
+                ghost.currentIndex = ghost.startIndex; // Send the ghost back to its initial position
+                ghost.isScared = false;
+                squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+                return; // Exit the function to prevent further movement
+            }
     
             // If the ghost is still in the ghost lair, move according to initial direction
             if (squares[ghost.currentIndex].classList.contains('ghost-lair')) {
@@ -218,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!squares[previousIndex].classList.contains('ghost') && squares[previousIndex].classList.contains('pac-dot')) {
                 squares[previousIndex].classList.remove('no-border');
             }
-
+    
             // Toggle class to remove border from pac-dot if a ghost is on the same square
             if (squares[ghost.currentIndex].classList.contains('pac-dot')) {
                 squares[ghost.currentIndex].classList.toggle('no-border');
@@ -227,6 +239,7 @@ document.addEventListener('DOMContentLoaded', function() {
             checkForGameOver();
         }, ghost.speed);
     }
+    
     
     
 
