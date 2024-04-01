@@ -167,10 +167,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // All my Ghosts
     const ghosts = [
-        new Ghost ('blinky', 348, 250),
-        new Ghost ('pinky', 376, 400),
+        new Ghost ('blinky', 348, 300),
+        new Ghost ('pinky', 376, 300),
         new Ghost ('inky', 351, 300),
-        new Ghost ('clyde', 379, 500),
+        new Ghost ('clyde', 379, 300),
     ]
 
     // Draw Ghosts Onto the Grid
@@ -183,38 +183,52 @@ document.addEventListener('DOMContentLoaded', function() {
     ghosts.forEach(ghost => moveGhost(ghost))
 
     function moveGhost(ghost) {
-        const directions = [-1, 1, width, -width]
-        let direction = directions[Math.floor(Math.random() * directions.length)]
-
+        const initialDirection = [-1, 1, width, -width];
+        const directions = [-1, 1, width, -width];
+        let direction = initialDirection[0]; // Initial direction to move out of the ghost lair
+    
         ghost.timerId = setInterval(function() {
-            // If next square your ghost is going to go to does not have a ghost and does not have a wall
-            if (
-                !squares[ghost.currentIndex + direction].classList.contains('ghost') && !squares[ghost.currentIndex + direction].classList.contains('wall')
-            ) {
-                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost')
-                ghost.currentIndex += direction
-                squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
-                // Else find a new random direction
-            } else direction = directions[Math.floor(Math.random() * directions.length)]
-
-            // Only if the ghost is Currently Scared
-            if(ghost.isScared) {
-                squares[ghost.currentIndex].classList.add('scared-ghost')
+    
+            // Save the previous index of the ghost
+            const previousIndex = ghost.currentIndex;
+    
+            // If the ghost is still in the ghost lair, move according to initial direction
+            if (squares[ghost.currentIndex].classList.contains('ghost-lair')) {
+                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
+                ghost.currentIndex += direction;
+                squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+            } else {
+                // If the ghost has exited the ghost lair, move randomly
+                if (!squares[ghost.currentIndex + direction].classList.contains('ghost') && !squares[ghost.currentIndex + direction].classList.contains('wall')) {
+                    squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost');
+                    ghost.currentIndex += direction;
+                    squares[ghost.currentIndex].classList.add(ghost.className, 'ghost');
+                } else {
+                    // If blocked, find a new random direction
+                    direction = directions[Math.floor(Math.random() * directions.length)];
+                }
+            }
+    
+            // Handle scared ghost logic
+            if (ghost.isScared) {
+                squares[ghost.currentIndex].classList.add('scared-ghost');
+            }
+    
+             // Remove 'no-border' class from pac-dot if ghost leaves the square
+            if (!squares[previousIndex].classList.contains('ghost') && squares[previousIndex].classList.contains('pac-dot')) {
+                squares[previousIndex].classList.remove('no-border');
             }
 
-            // If the ghost is currently scared and pacman is on it
-            if(ghost.isScared && squares[ghost.currentIndex].classList.contains('pac-man')){
-                ghost.isScared = false
-                squares[ghost.currentIndex].classList.remove(ghost.className, 'ghost', 'scared-ghost')
-                ghost.currentIndex = ghost.startIndex
-                score += 100
-                scoreDisplay.innerHTML = score
-                squares[ghost.currentIndex].classList.add(ghost.className, 'ghost')
+            // Toggle class to remove border from pac-dot if a ghost is on the same square
+            if (squares[ghost.currentIndex].classList.contains('pac-dot')) {
+                squares[ghost.currentIndex].classList.toggle('no-border');
             }
-           checkForGameOver()
-            
-        }, ghost.speed)
+            // Check for game over
+            checkForGameOver();
+        }, ghost.speed);
     }
+    
+    
 
     // Check for game over
     function checkForGameOver() {
