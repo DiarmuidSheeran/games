@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let score = 0
     let grid = document.querySelector('.grid')
     let level = 1;
-    let ghostSpeed = 1000;
+    let ghostSpeed = 500;
 
     function initializeGame() {
 
@@ -71,6 +71,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         createBoard()
+
+        // Display level
+        document.getElementById('level').textContent = level;
 
         // Create charecters
         // Draw pac-man onto the board
@@ -253,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ){
                 ghosts.forEach(ghost => clearInterval(ghost.timerId))
                 document.removeEventListener('keyup', movePacman)
-                setTimeout(function(){ alert('Game Over')}, 500)
+                setTimeout(function(){ alert('Game Over!\nYou Scored: ' + score + ' points!')}, 500)
             }
         }
 
@@ -267,20 +270,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         
-            if (pelletsRemaining === 200) {
+            if (pelletsRemaining === 0) {
                 ghosts.forEach(ghost => clearInterval(ghost.timerId));
 
                 level++;
                 
                 // Increase ghost speed
-                ghostSpeed -= 200;
+                ghostSpeed -= 50;
                 
-                // Display level
-                document.getElementById('level').textContent = level;
 
                 ghosts.forEach(ghost => clearInterval(ghost.timerId))
                 document.removeEventListener('keyup', movePacman)
-                setTimeout(function(){ alert('Level Won')}, 500)
+                setTimeout(function(){ alert('Congfratulations!\nLevel Won\nBegin Level: ' + level)}, 100)
 
                 // Reset game for the next level
                 setTimeout(resetGame(), 1000)
