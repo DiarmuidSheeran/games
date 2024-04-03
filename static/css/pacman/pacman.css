@@ -91,6 +91,37 @@ body {
     background-color: black;
 }
 
+.controller {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: red solid 4px;
+    border-radius: 10px;
+    
+}
+
+.horizontal {
+    display: flex;
+}
+
+.btn {
+    margin: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+}
+
+.btn i {
+    font-size: 12px;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
 
 @media screen and (max-width: 768px) {
     .grid {
