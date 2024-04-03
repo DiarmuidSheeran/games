@@ -10,13 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const moveRightBtn = document.getElementById('moveRightBtn');
     const moveUpBtn = document.getElementById('moveUpBtn');
     const moveDownBtn = document.getElementById('moveDownBtn');
+    const footer = document.getElementById('main-footer');
 
 
 
    
 
     function initializeGame() {
-
+        footer.style.display = 'none';
         const layout = [
             1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
             1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
