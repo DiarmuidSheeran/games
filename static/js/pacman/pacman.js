@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     let grid = document.querySelector('.grid')
     let level = 1;
     let ghostSpeed = 500;
+    let movePacman;
+    
     const moveLeftBtn = document.getElementById('moveLeftBtn');
     const moveRightBtn = document.getElementById('moveRightBtn');
     const moveUpBtn = document.getElementById('moveUpBtn');
@@ -155,10 +157,11 @@ function movePacman(direction) {
     powerPelleteEaten();
     checkForGameOver();
     checkForWin();
+
 }
 
-// Add event listener for keyboard arrow key presses
-document.addEventListener('keyup', function(e) {
+ // Add event listener for keyboard arrow key presses
+ document.addEventListener('keyup', function(e) {
     movePacman(e.key);
 });
 
@@ -175,7 +178,6 @@ moveUpBtn.addEventListener('click', function() {
 moveDownBtn.addEventListener('click', function() {
     movePacman('ArrowDown');
 });
-
 
         // What happens when you eat a pac-dot
         function pacDotEaten(){
@@ -312,7 +314,7 @@ moveDownBtn.addEventListener('click', function() {
                 }
             });
         
-            if (pelletsRemaining === 0) {
+            if (pelletsRemaining === 200) {
                 ghosts.forEach(ghost => clearInterval(ghost.timerId));
 
                 level++;
@@ -323,15 +325,19 @@ moveDownBtn.addEventListener('click', function() {
 
                 ghosts.forEach(ghost => clearInterval(ghost.timerId))
                 document.removeEventListener('keyup', movePacman)
-                setTimeout(function(){ alert('Congfratulations!\nLevel Won\nBegin Level: ' + level)}, 100)
+                grid.innerHTML = '';
+                { alert('Congfratulations!\nLevel Won\nBegin Level: ' + level)}
 
+                
                 // Reset game for the next level
-                setTimeout(resetGame(), 1000)
+                resetGame();
             }
+            
         }
 
         function resetGame() {
-            grid.innerHTML = '';
+            
+            document.addEventListener('keyup', movePacman)
         
             initializeGame();
         }
