@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const moveDownBtn = document.getElementById('moveDownBtn');
     const footer = document.getElementById('main-footer');
 
+     // Add event listener for keyboard arrow key presses
+
 
 
    
@@ -86,98 +88,101 @@ document.addEventListener('DOMContentLoaded', function() {
         // Display level
         document.getElementById('level').textContent = level;
 
+
+        moveLeftBtn.addEventListener('click', function() {
+            movePacman('ArrowLeft');
+        });
+        moveRightBtn.addEventListener('click', function() {
+            movePacman('ArrowRight');
+        });
+        moveUpBtn.addEventListener('click', function() {
+            movePacman('ArrowUp');
+        });
+        moveDownBtn.addEventListener('click', function() {
+            movePacman('ArrowDown');
+        });
+
+        document.addEventListener('keyup', function(e) {
+            movePacman(e.key);
+        });
+    
+
         // Create charecters
         // Draw pac-man onto the board
         let pacmanCurrentIndex = 490
         squares[pacmanCurrentIndex].classList.add('pac-man')
 
         // Function to move Pac-Man
-function movePacman(direction) {
-    // Remove the existing pac-man class
-    squares[pacmanCurrentIndex].classList.remove('pac-man');
+        function movePacman(direction) {
+            // Remove the existing pac-man class
+            squares[pacmanCurrentIndex].classList.remove('pac-man');
 
-    // Move pac-man in the specified direction
-    switch (direction) {
-        case 'ArrowLeft':
-            if (
-                pacmanCurrentIndex % width !== 0 &&
-                !squares[pacmanCurrentIndex - 1].classList.contains('wall') &&
-                !squares[pacmanCurrentIndex - 1].classList.contains('ghost-lair')
-            ) {
-                pacmanCurrentIndex -= 1;
-                squares[pacmanCurrentIndex].style.transform = 'scaleX(-1)';
+            // Move pac-man in the specified direction
+            switch (direction) {
+                
+                case 'ArrowLeft':
+                    if (
+                        pacmanCurrentIndex % width !== 0 &&
+                        !squares[pacmanCurrentIndex - 1].classList.contains('wall') &&
+                        !squares[pacmanCurrentIndex - 1].classList.contains('ghost-lair')
+                    ) {
+                        pacmanCurrentIndex -= 1;
+                        squares[pacmanCurrentIndex].style.transform = 'scaleX(-1)';
+                    }
+                    if (squares[pacmanCurrentIndex - 1] === squares[363]) {
+                        pacmanCurrentIndex = 391;
+                    }
+                    break;
+
+                case 'ArrowRight':
+                    if (
+                        pacmanCurrentIndex % width < width - 1 &&
+                        !squares[pacmanCurrentIndex + 1].classList.contains('wall') &&
+                        !squares[pacmanCurrentIndex + 1].classList.contains('ghost-lair')
+                    ) {
+                        pacmanCurrentIndex += 1;
+                        squares[pacmanCurrentIndex].style.transform = 'scaleX(1)';
+                    }
+                    if (squares[pacmanCurrentIndex + 1] === squares[392]) {
+                        pacmanCurrentIndex = 364;
+                    }
+                    break;
+
+                case 'ArrowUp':
+                    if (
+                        pacmanCurrentIndex - width >= 0 &&
+                        !squares[pacmanCurrentIndex - width].classList.contains('wall') &&
+                        !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair')
+                    ) {
+                        pacmanCurrentIndex -= width;
+                        squares[pacmanCurrentIndex].style.transform = 'rotate(-90deg)';
+                    }
+                    break;
+
+                case 'ArrowDown':
+                    if (
+                        pacmanCurrentIndex + width < width * width &&
+                        !squares[pacmanCurrentIndex + width].classList.contains('wall') &&
+                        !squares[pacmanCurrentIndex + width].classList.contains('ghost-lair')
+                    ) {
+                        pacmanCurrentIndex += width;
+                        squares[pacmanCurrentIndex].style.transform = 'rotate(90deg)';
+                    }
+                    break;
             }
-            if (squares[pacmanCurrentIndex - 1] === squares[363]) {
-                pacmanCurrentIndex = 391;
-            }
-            break;
 
-        case 'ArrowRight':
-            if (
-                pacmanCurrentIndex % width < width - 1 &&
-                !squares[pacmanCurrentIndex + 1].classList.contains('wall') &&
-                !squares[pacmanCurrentIndex + 1].classList.contains('ghost-lair')
-            ) {
-                pacmanCurrentIndex += 1;
-                squares[pacmanCurrentIndex].style.transform = 'scaleX(1)';
-            }
-            if (squares[pacmanCurrentIndex + 1] === squares[392]) {
-                pacmanCurrentIndex = 364;
-            }
-            break;
+            // Add the pac-man class to the new position
+            squares[pacmanCurrentIndex].classList.add('pac-man');
+            
+            // Call the necessary functions after the movement
+            pacDotEaten();
+            powerPelleteEaten();
+            checkForGameOver();
+            checkForWin();
 
-        case 'ArrowUp':
-            if (
-                pacmanCurrentIndex - width >= 0 &&
-                !squares[pacmanCurrentIndex - width].classList.contains('wall') &&
-                !squares[pacmanCurrentIndex - width].classList.contains('ghost-lair')
-            ) {
-                pacmanCurrentIndex -= width;
-                squares[pacmanCurrentIndex].style.transform = 'rotate(-90deg)';
-            }
-            break;
+        }
+        
 
-        case 'ArrowDown':
-            if (
-                pacmanCurrentIndex + width < width * width &&
-                !squares[pacmanCurrentIndex + width].classList.contains('wall') &&
-                !squares[pacmanCurrentIndex + width].classList.contains('ghost-lair')
-            ) {
-                pacmanCurrentIndex += width;
-                squares[pacmanCurrentIndex].style.transform = 'rotate(90deg)';
-            }
-            break;
-    }
-
-    // Add the pac-man class to the new position
-    squares[pacmanCurrentIndex].classList.add('pac-man');
-
-    // Call the necessary functions after the movement
-    pacDotEaten();
-    powerPelleteEaten();
-    checkForGameOver();
-    checkForWin();
-
-}
-
- // Add event listener for keyboard arrow key presses
- document.addEventListener('keyup', function(e) {
-    movePacman(e.key);
-});
-
-// Add event listeners for button clicks
-moveLeftBtn.addEventListener('click', function() {
-    movePacman('ArrowLeft');
-});
-moveRightBtn.addEventListener('click', function() {
-    movePacman('ArrowRight');
-});
-moveUpBtn.addEventListener('click', function() {
-    movePacman('ArrowUp');
-});
-moveDownBtn.addEventListener('click', function() {
-    movePacman('ArrowDown');
-});
 
         // What happens when you eat a pac-dot
         function pacDotEaten(){
@@ -307,49 +312,36 @@ moveDownBtn.addEventListener('click', function() {
         // Check for a Win
         function checkForWin() {
             let pelletsRemaining = 0;
-        
+
             squares.forEach(square => {
                 if (square.classList.contains('pac-dot') || square.classList.contains('power-pellet')) {
                     pelletsRemaining++;
                 }
             });
-        
-            if (pelletsRemaining === 200) {
-                ghosts.forEach(ghost => clearInterval(ghost.timerId));
 
-                level++;
-                
-                // Increase ghost speed
-                ghostSpeed -= 50;
-                
-
+            if (pelletsRemaining == 1) {
+                squares.forEach(square => {
+                    square.classList.remove('pac-dot', 'power-pellet');
+                });
                 ghosts.forEach(ghost => clearInterval(ghost.timerId))
                 document.removeEventListener('keyup', movePacman)
+                // Clear the grid
                 grid.innerHTML = '';
-                { alert('Congfratulations!\nLevel Won\nBegin Level: ' + level)}
-
                 
-                // Reset game for the next level
-                resetGame();
+                level++;
+
+                // Reset ghost speed
+                ghostSpeed -= 50;
+                
+                // Restart the game with the next level after a delay
+                setTimeout(initializeGame, 1000);
             }
-            
-        }
 
-        function resetGame() {
-            
-            document.addEventListener('keyup', movePacman)
-        
-            initializeGame();
         }
-
     }
     initializeGame();
-    
-    
-    
-
-    
 })
+
 
     
 
