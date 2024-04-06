@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import GameScoreForm
 from .models import PacmanGameScore
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 # Create your views here.
 
 def pacman(request):
@@ -31,9 +33,19 @@ def pacman(request):
     return render(request, template, context)
 
 def pacman_leaderboard(request):
-   
+    all_game_scores = PacmanGameScore.objects.all()
+    
+    paginator = Paginator(all_game_scores, 15)
+    page_number = request.GET.get('page')
+    try:
+        game_scores = paginator.page(page_number)
+    except PageNotAnInteger:
+        game_scores = paginator.page(1)
+    except EmptyPage:
+        game_scores = paginator.page(paginator.num_pages)
+
     context = {
-        
+        'game_scores': game_scores,
     }
 
     template = 'pacman/pacman-leaderboard.html'
