@@ -16,6 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const startGameButton = document.getElementById('startGameButton');
     const restartGameButton = document.getElementById('restartGameButton');
     const startGame = document.getElementById('startGame');
+    const leaderboard = document.getElementById('leaderboard');
+    const logo = document.getElementById('logo');
+    const scoreAndLevel = document.getElementById('scoreAndLevel');
+    const controler = document.getElementById('controler');
     let gameStarted = false;
 
      // Add event listener for keyboard arrow key presses
@@ -23,13 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
         gameStarted = true;
         startGame.style.display = 'block';
         startGameButton.style.display = 'none';
-    });
+        leaderboard.style.display = 'none';
+        logo.style.display = 'none';
+        scoreAndLevel.style.display = 'block';
+        controler.style.display = 'block';
 
-    restartGameButton.addEventListener('click', function() {
-        location.reload();
-    });
-   
-    
         function initializeGame() {
             footer.style.display = 'none';
             const layout = [
@@ -317,9 +319,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     ghosts.forEach(ghost => clearInterval(ghost.timerId))
                     document.removeEventListener('keyup', movePacman)
                     startGame.style.display = 'none';
+                    controler.style.display = 'none';
+                    logo.style.display = 'block';
                     document.getElementById('scoreForm').style.display = 'block';
                     document.getElementById('scoreInput').value = score;
-                    setTimeout(function(){ alert('Game Over!\nYou Scored: ' + score + ' points!')}, 500)
                 }
             }
     
@@ -354,6 +357,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         initializeGame();
+        
+    });
+
+    restartGameButton.addEventListener('click', function() {
+        location.reload();
+    });
+   
+    
+        
     
        
     
