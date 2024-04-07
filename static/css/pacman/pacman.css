@@ -27,8 +27,8 @@ body {
 }
 
 .wall {
-    background-color: rgb(240, 193, 5);
-    border: 1px solid rgb(231, 231, 231);
+    background-color: rgb(5, 48, 240);
+    border: none;
 }
 
 .power-pellet {
