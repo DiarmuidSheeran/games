@@ -24,5 +24,6 @@ urlpatterns = [
     path('', include('base.urls')),
     path('space_invaders/', include('space_invaders.urls')),
     path('pacman/', include('pacman.urls')),
+    path('snake/', include('snake.urls')),
     path('profiles/', include('profiles.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

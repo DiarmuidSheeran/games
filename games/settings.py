@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['retro-gaming-site-5328a324207f.herokuapp.com', '127.0.0.1']
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'base',
     'space_invaders',
     'pacman',
+    'snake',
     'profiles',
     'django.contrib.sites',
     'allauth',
