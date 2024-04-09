@@ -5,7 +5,7 @@ class PacmanGameScore(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     user_name = models.CharField(max_length=100)
     score = models.IntegerField()
-    level = models.ImageField()
+    level = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

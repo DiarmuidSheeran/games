@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
  
     let scoreDisplay = document.getElementById('score')
+    let timerDisplay = document.getElementById('scared-timer')
     let width = 28
     let score = 0
     let grid = document.querySelector('.grid')
@@ -226,13 +227,38 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
     
             // What happens when you eat a power-pellet
-            function powerPelleteEaten(){
-                if(squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
-                    score += 10
-                    scoreDisplay.innerHTML = score
-                    ghosts.forEach(ghost => ghost.isScared = true)
-                    setTimeout(unScareGhosts, 10000)
-                    squares[pacmanCurrentIndex].classList.remove('power-pellet')
+            function powerPelleteEaten() {
+                if (squares[pacmanCurrentIndex].classList.contains('power-pellet')) {
+                    score += 10;
+                    scoreDisplay.innerHTML = score;
+                    ghosts.forEach(ghost => ghost.isScared = true);
+                    
+                    // Set the duration of the scared state (in milliseconds)
+                    const scaredTime = 10000; // 10 seconds
+                    
+                    // Update the score display with the remaining time
+                    let timeRemaining = scaredTime / 1000; // Convert milliseconds to seconds
+                    timerDisplay.style.display = 'block';
+                    timerDisplay.innerHTML = `Ghost's-Scared: ${timeRemaining}s`;
+                    
+                    // Update the score display every second until the scared state ends
+                    const countdownInterval = setInterval(() => {
+                        timeRemaining--;
+                        timerDisplay.innerHTML = `Ghost's-Scared: ${timeRemaining}s`;
+                        if (timeRemaining <= 0) {
+                            clearInterval(countdownInterval);
+                            timerDisplay.style.display = 'none';
+                        }
+                    }, 1000);
+                    
+                    // Clear the scared state after the specified duration
+                    setTimeout(() => {
+                        unScareGhosts();
+                        
+                        clearInterval(countdownInterval); // Stop the countdown
+                    }, scaredTime);
+                    
+                    squares[pacmanCurrentIndex].classList.remove('power-pellet');
                 }
             }
     
@@ -322,6 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     controler.style.display = 'none';
                     logo.style.display = 'block';
                     document.getElementById('scoreForm').style.display = 'block';
+                    document.getElementById('levelInput').value = level;
                     document.getElementById('scoreInput').value = score;
                 }
             }
