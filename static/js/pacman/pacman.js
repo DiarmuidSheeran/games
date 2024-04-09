@@ -338,10 +338,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
                 if (pelletsRemaining == 1) {
                     squares.forEach(square => {
-                        square.classList.remove('pac-dot', 'power-pellet');
+                        square.classList.remove('pac-dot', 'power-pellet', 'pac-man', 'ghost', 'scared-ghost');
                     });
                     ghosts.forEach(ghost => clearInterval(ghost.timerId))
                     document.removeEventListener('keyup', movePacman)
+
+                
                     // Clear the grid
                     grid.innerHTML = '';
                     
@@ -351,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ghostSpeed -= 50;
                     
                     // Restart the game with the next level after a delay
-                    setTimeout(initializeGame, 1000);
+                    initializeGame();
                 }
     
             }
