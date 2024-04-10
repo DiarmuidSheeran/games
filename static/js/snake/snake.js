@@ -42,7 +42,27 @@ function moveSnake(e) {
             break;
     }
     squares[currentSnakeIndex].classList.add('snake');
+    checkfoodEaten()
 }
+
+
+function checkfoodEaten(){
+    if (squares[currentSnakeIndex].classList.contains('food')){
+        squares[currentSnakeIndex].classList.remove('food');
+        
+        generateFood();
+    }
+
+}
+
+function generateFood() {
+    currentFoodIndex = Math.floor(Math.random() * squares.length);
+    while (squares[currentFoodIndex].classList.contains('snake')) {
+        currentFoodIndex = Math.floor(Math.random() * squares.length);
+    }
+    squares[currentFoodIndex].classList.add('food');
+}
+
 document.addEventListener('keydown', moveSnake);
 
 console.log(squares)
