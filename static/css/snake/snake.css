@@ -1,0 +1,28 @@
+body {
+    background-color: brown !important;
+}
+
+.grid {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
+    border: white solid 2px;
+}
+
+.grid div{
+    justify-content: center;
+    width: 39px;
+    height: 39px;
+    border: white solid 1px;
+}
+
+.snake {
+    background-color: green;
+}
+
+.food {
+    background-color: rgb(0, 6, 128);
+}
