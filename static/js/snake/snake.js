@@ -1,6 +1,6 @@
 const grid = document.querySelector('.grid');
 const width = 15;
-let currentSnakeIndex = 112;
+let currentSnakeIndex = [112];
 let currentFoodIndex = 90;
 
 for (let i = 0; i < width * width; i++) {
@@ -10,7 +10,7 @@ for (let i = 0; i < width * width; i++) {
 
 const squares = Array.from(document.querySelectorAll('.grid div'));
 
-squares[currentSnakeIndex].classList.add('snake');
+currentSnakeIndex.forEach(index => squares[index].classList.add('snake'));
 squares[currentFoodIndex].classList.add('food');
 
 function moveSnake(e) {
@@ -49,8 +49,9 @@ function moveSnake(e) {
 function checkfoodEaten(){
     if (squares[currentSnakeIndex].classList.contains('food')){
         squares[currentSnakeIndex].classList.remove('food');
-        
+
         generateFood();
+        currentSnakeIndex.push(currentSnakeIndex[currentSnakeIndex.length - 1])
     }
 
 }
