@@ -4,6 +4,26 @@ const snakeBody = [
     {x: 11, y: 11}
 ]
 const gameBoard = document.getElementById('game-board')
+let inputDirection = {x: 0, y: 0}
+
+window.addEventListener('keydown', e => {
+    switch (e.key) {
+        case 'ArrowUp':
+            inputDirection = { x: 0, y: -1}
+            break
+        case 'ArrowDown':
+            inputDirection = { x: 0, y: 1}
+            break
+        case 'ArrowLeft':
+            inputDirection = { x: -1, y: 0}
+            break
+        case 'ArrowRight':
+            inputDirection = { x: 1, y: 0}
+            break
+    }
+        
+    
+})
 
 function main(currentTime) {
     window.requestAnimationFrame(main)
@@ -19,13 +39,18 @@ function main(currentTime) {
 
 window.requestAnimationFrame(main)
 
+function getInputDirection(){
+    return inputDirection
+}
+
 function update(){
+    const inputDirection = getInputDirection()
     for (let i = snakeBody.length -2; i >= 0; i--) {
         snakeBody[i + 1] = { ...snakeBody[i]}
     }
 
-    snakeBody[0].x += 1
-    snakeBody[0].y += 0
+    snakeBody[0].x += inputDirection.x
+    snakeBody[0].y += inputDirection.y
 }
 
 function draw(){
@@ -38,3 +63,4 @@ function draw(){
         gameBoard.appendChild(snakeElement)
     })
 }
+
