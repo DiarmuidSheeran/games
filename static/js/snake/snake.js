@@ -9,6 +9,9 @@ const gameBoard = document.getElementById('game-board')
 let inputDirection = {x: 0, y: 0}
 let lastInputDirection = {x:0, y:0}
 
+const EXPANSION_RATE = 1
+let newSegments = 0
+
 
 
 window.addEventListener('keydown', e => {
@@ -54,6 +57,13 @@ function getInputDirection(){
 }
 
 function update(){
+    //Food
+    if (onSnake(food)){
+        expandSnake(EXPANSION_RATE)
+        food = { x: 20, y: 10}
+    }
+
+    //Snake
     const inputDirection = getInputDirection()
     for (let i = snakeBody.length -2; i >= 0; i--) {
         snakeBody[i + 1] = { ...snakeBody[i]}
@@ -65,7 +75,7 @@ function update(){
 
 function draw(){
     gameBoard.innerHTML = ""
-    
+
     //Food
     const foodElement = document.createElement('div')
     foodElement.style.gridRowStart = food.y
@@ -74,6 +84,7 @@ function draw(){
     gameBoard.appendChild(foodElement)
 
     //Snake
+    addSegments()
     snakeBody.forEach(segment => {
         const snakeElement = document.createElement('div')
         snakeElement.style.gridRowStart = segment.y
@@ -81,5 +92,25 @@ function draw(){
         snakeElement.classList.add('snake')
         gameBoard.appendChild(snakeElement)
     })
+}
+
+function expandSnake(amount) {
+    newSegments += amount
+}
+
+function onSnake(position){
+    return snakeBody.some(segement =>{
+        return equalPositions(segement, position)
+    })
+}
+
+function equalPositions(pos1, pos2){
+    return (
+        pos1.x === pos2.x && pos1.y === pos2.y
+    )
+}
+
+function addSegments(){
+    
 }
 
