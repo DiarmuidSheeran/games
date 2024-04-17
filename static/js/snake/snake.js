@@ -1,11 +1,15 @@
 let lastRenderTime = 0
-const SNAKE_SPEED = 2
+const SNAKE_SPEED = 5
+let food = {x: 10, y: 1}
 const snakeBody = [
     {x: 11, y: 11}
 ]
+
 const gameBoard = document.getElementById('game-board')
 let inputDirection = {x: 0, y: 0}
 let lastInputDirection = {x:0, y:0}
+
+
 
 window.addEventListener('keydown', e => {
     switch (e.key) {
@@ -61,6 +65,15 @@ function update(){
 
 function draw(){
     gameBoard.innerHTML = ""
+    
+    //Food
+    const foodElement = document.createElement('div')
+    foodElement.style.gridRowStart = food.y
+    foodElement.style.gridColumnStart = food.x
+    foodElement.classList.add('food')
+    gameBoard.appendChild(foodElement)
+
+    //Snake
     snakeBody.forEach(segment => {
         const snakeElement = document.createElement('div')
         snakeElement.style.gridRowStart = segment.y
