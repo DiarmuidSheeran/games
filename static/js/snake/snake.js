@@ -41,8 +41,12 @@ window.addEventListener('keydown', e => {
 
 function main(currentTime) {
     if (gameOver){
-        return alert('You Lose')
+        if(confirm('You Lost. Press Ok to Restart')) {
+            window.location = '/snake/game/'
+        }
+        return 
     }
+        
     window.requestAnimationFrame(main)
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
     if (secondsSinceLastRender < 1 / SNAKE_SPEED) return
