@@ -1,10 +1,11 @@
 let lastRenderTime = 0
 const SNAKE_SPEED = 5
-let food = {x: 10, y: 1}
+GRID_SIZE = 21
+
 const snakeBody = [
     {x: 11, y: 11}
 ]
-
+let food = getRandomFoodPosition()
 const gameBoard = document.getElementById('game-board')
 let inputDirection = {x: 0, y: 0}
 let lastInputDirection = {x:0, y:0}
@@ -60,7 +61,7 @@ function update(){
     //Food
     if (onSnake(food)){
         expandSnake(EXPANSION_RATE)
-        food = { x: 20, y: 10}
+        food = getRandomFoodPosition()
     }
 
     //Snake
@@ -117,4 +118,21 @@ function addSegments(){
 
     newSegments = 0
 }
+
+function randomGridPosition() {
+    return {
+        x: Math.floor(Math.random() * GRID_SIZE) + 1,
+        y: Math.floor(Math.random() * GRID_SIZE) + 1
+    }
+}
+
+function getRandomFoodPosition() {
+    let newFoodPosition
+    while(newFoodPosition == null || onSnake(newFoodPosition)) {
+        newFoodPosition = randomGridPosition()
+    }
+    return newFoodPosition
+}
+
+
 
