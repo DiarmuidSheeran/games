@@ -12,6 +12,7 @@ let lastInputDirection = {x:0, y:0}
 
 const EXPANSION_RATE = 1
 let newSegments = 0
+let gameOver = false
 
 
 
@@ -39,6 +40,9 @@ window.addEventListener('keydown', e => {
 })
 
 function main(currentTime) {
+    if (gameOver){
+        return alert('You Lose')
+    }
     window.requestAnimationFrame(main)
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
     if (secondsSinceLastRender < 1 / SNAKE_SPEED) return
@@ -72,6 +76,8 @@ function update(){
 
     snakeBody[0].x += inputDirection.x
     snakeBody[0].y += inputDirection.y
+
+    checkDeath()
 }
 
 function draw(){
@@ -99,11 +105,21 @@ function expandSnake(amount) {
     newSegments += amount
 }
 
-function onSnake(position){
-    return snakeBody.some(segement =>{
+function onSnake(position, {ignoreHead = false} = {}){
+    return snakeBody.some((segement, index) =>{
+        if (ignoreHead && index === 0 ) return false
         return equalPositions(segement, position)
     })
 }
+
+function getSnakeHead() {
+    return snakeBody[0]
+}
+
+function snakeIntersection() {
+    return onSnake(snakeBody[0], {ignoreHead: true})
+}
+
 
 function equalPositions(pos1, pos2){
     return (
@@ -126,6 +142,13 @@ function randomGridPosition() {
     }
 }
 
+function outsideGrid(position) {
+    return (
+        position.x < 1 || position.x > GRID_SIZE ||
+        position.y < 1 || position.y > GRID_SIZE
+    )
+}
+
 function getRandomFoodPosition() {
     let newFoodPosition
     while(newFoodPosition == null || onSnake(newFoodPosition)) {
@@ -134,5 +157,8 @@ function getRandomFoodPosition() {
     return newFoodPosition
 }
 
+function checkDeath() {
+    gameOver = outsideGrid(getSnakeHead()) || snakeIntersection()
+}
 
 
