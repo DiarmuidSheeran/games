@@ -1,3 +1,5 @@
+let scoreDisplay = document.getElementById('score')
+let score = 0
 let lastRenderTime = 0
 const SNAKE_SPEED = 5
 GRID_SIZE = 21
@@ -68,6 +70,8 @@ function getInputDirection(){
 function update(){
     //Food
     if (onSnake(food)){
+        score += SNAKE_SPEED
+        scoreDisplay.innerHTML = score
         expandSnake(EXPANSION_RATE)
         food = getRandomFoodPosition()
     }
