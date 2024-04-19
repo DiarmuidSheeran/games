@@ -1,18 +1,21 @@
 #game-board {
-    background-color: #ccc;
+    background-color: #697a6a;
     width: 100vmin;
     height: 100vmin;
     display: grid;
     grid-template-rows: repeat(21, 1fr);
     grid-template-columns: repeat(21, 1fr);
+    border: solid 2px red;
 }
 
 .snake {
-    background-color: blue;
+    background-color: rgb(98, 255, 0);
     border: .25vmin solid black;
+    border-radius: 3px;
 }
 
 .food {
-    background-color: yellow;
+    background-color: rgb(255, 0, 0);
     border: .25vmin solid black;
+    border-radius: 10px;
 }

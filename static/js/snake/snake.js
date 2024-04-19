@@ -1,7 +1,7 @@
 let scoreDisplay = document.getElementById('score')
 let score = 0
 let lastRenderTime = 0
-const SNAKE_SPEED = 5
+const SNAKE_SPEED = 20
 GRID_SIZE = 21
 
 const snakeBody = [
