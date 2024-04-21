@@ -1,6 +1,17 @@
 let scoreDisplay = document.getElementById('score')
 let score = 0
-let lastRenderTime = 0
+const startBtn = document.getElementById('startBtn');
+
+startBtn.addEventListener('click', startGame);
+let gameBoard = document.getElementById('game-board')
+let scoreBoard = document.getElementById('score')
+
+function startGame(){
+    startBtn.style.display = 'none';
+    scoreBoard.style.display = 'block';
+    gameBoard.style.display = 'grid';
+
+    let lastRenderTime = 0
 const SNAKE_SPEED = 5
 GRID_SIZE = 21
 
@@ -8,7 +19,6 @@ const snakeBody = [
     {x: 11, y: 11}
 ]
 let food = getRandomFoodPosition()
-const gameBoard = document.getElementById('game-board')
 let inputDirection = {x: 0, y: 0}
 let lastInputDirection = {x:0, y:0}
 
@@ -168,5 +178,5 @@ function getRandomFoodPosition() {
 function checkDeath() {
     gameOver = outsideGrid(getSnakeHead()) || snakeIntersection()
 }
-
+}
 
