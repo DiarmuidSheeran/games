@@ -5,9 +5,10 @@ const startBtn = document.getElementById('startBtn');
 startBtn.addEventListener('click', startGame);
 let gameBoard = document.getElementById('game-board')
 let scoreBoard = document.getElementById('score')
+let snakeStartGame = document.getElementById('snakeStartGame')
 
 function startGame(){
-    startBtn.style.display = 'none';
+    snakeStartGame.style.display = 'none';
     scoreBoard.style.display = 'block';
     gameBoard.style.display = 'grid';
 
