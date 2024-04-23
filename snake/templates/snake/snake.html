@@ -12,7 +12,12 @@
 {% block title %}Snake{% endblock %}
 
 {% block content %}
-<div class="container mb-4 text-center justify-content-center" id="snakeStartGame">      
+<div class="container mb-4 text-center justify-content-center" id="snakeStartGame">
+    <div class="row mb-2">
+        <div class="col-12 d-flex justify-content-center">
+            <h1><Strong class="text-light">Snake</Strong></h1>
+        </div>
+    </div>     
     <div class="row mb-2">
         <div class="col-12 d-flex justify-content-center">
             <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1712598045/snake-logo_vnarf4.png' }}" alt="Snake Game Logo" class="img-fluid">
@@ -20,11 +25,11 @@
     </div>
     <div class="row">
         <div class="col col-md-12">
-            <div class="card text-white text-center leaderboard">
-                <h1><Strong class="text-dark">Snake</Strong></h1>
-                <div class="w-100 level-selection text-light mt-2 bg-light text-dark">
-                    <label for="level"><h4><strong>Select Level:</strong></h4></label>
-                    <select class="mr-2 w-50 text-center mt-2 mb-2 bg-light text-dark h6 border border-dark" id="level" name="level">
+            <div class="card text-light text-center bg-success">
+                <div class="w-100 level-selection text-light mt-2 bg-success text-dark">
+                    <label for="level"><h4 class="text-light"><strong>Select Level:</strong></h4></label>
+                    <br>
+                    <select class="mr-2 w-50 text-center  mb-2 bg-light text-dark h6 border border-dark" id="level" name="level">
                         <option value="1" class="font-weight-bold">Level 1</option>
                         <option value="2" class="font-weight-bold">Level 2</option>
                         <option value="3" class="font-weight-bold">Level 3</option>
@@ -32,14 +37,15 @@
                         <option value="5" class="font-weight-bold">Level 5</option>
                         <option value="6" class="font-weight-bold">Extreme</option>
                     </select>
+                    <br>
                     <small><strong>Scores Multiply by Level Difficulty</strong></small>
                     <br>
-                    <button class="btn btn-primary border border-light mb-2 mt-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
+                    <button class="btn btn-primary border border-dark mb-2 mt-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
                     <br>
                 </div>
                 
-                <h2 class="leaderboard text-light text-decoration-underline pb-3 mt-2 bg-danger" style="border-bottom: red 4px solid; border-top: red 4px solid;"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
-                <ul class="leaderboard">
+                <h2 class="text-light text-decoration-underline pb-3 mt-2 bg-danger" style="border-bottom: red 4px solid; border-top: red 4px solid;"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
+                <ul>
                     {% for game_score in game_scores %}
                         <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
                     {% endfor %}
