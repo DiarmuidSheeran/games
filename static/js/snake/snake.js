@@ -1,19 +1,21 @@
 let scoreDisplay = document.getElementById('score')
 let score = 0
 const startBtn = document.getElementById('startBtn');
-
+const levelSelect = document.getElementById('level');
 startBtn.addEventListener('click', startGame);
 let gameBoard = document.getElementById('game-board')
 let scoreBoard = document.getElementById('score')
 let snakeStartGame = document.getElementById('snakeStartGame')
 
+
 function startGame(){
+    const selectedLevel = levelSelect.value;
     snakeStartGame.style.display = 'none';
     scoreBoard.style.display = 'block';
     gameBoard.style.display = 'grid';
 
     let lastRenderTime = 0
-const SNAKE_SPEED = 5
+const SNAKE_SPEED = selectedLevel
 GRID_SIZE = 21
 
 const snakeBody = [
