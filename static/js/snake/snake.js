@@ -6,6 +6,10 @@ startBtn.addEventListener('click', startGame);
 let gameBoard = document.getElementById('game-board')
 let scoreBoard = document.getElementById('scoreBoard')
 let snakeStartGame = document.getElementById('snakeStartGame')
+const moveLeftBtn = document.getElementById('moveLeftBtn');
+const moveRightBtn = document.getElementById('moveRightBtn');
+const moveUpBtn = document.getElementById('moveUpBtn');
+const moveDownBtn = document.getElementById('moveDownBtn');
 
 
 function startGame(){
@@ -13,6 +17,32 @@ function startGame(){
     snakeStartGame.style.display = 'none';
     scoreBoard.style.display = 'block';
     gameBoard.style.display = 'grid';
+    controler.style.display = 'block';
+
+    // Move Up
+    moveUpBtn.addEventListener('touchstart', () => {
+        if (lastInputDirection.y !== 0) return;
+        inputDirection = { x: 0, y: -1 };
+    });
+
+    // Move Down
+    moveDownBtn.addEventListener('touchstart', () => {
+        if (lastInputDirection.y !== 0) return;
+        inputDirection = { x: 0, y: 1 };
+    });
+
+    // Move Left
+    moveLeftBtn.addEventListener('touchstart', () => {
+        if (lastInputDirection.x !== 0) return;
+        inputDirection = { x: -1, y: 0 };
+    });
+
+    // Move Right
+    moveRightBtn.addEventListener('touchstart', () => {
+        if (lastInputDirection.x !== 0) return;
+        inputDirection = { x: 1, y: 0 };
+    });
+
 
     let lastRenderTime = 0
 let SNAKE_SPEED = selectedLevel

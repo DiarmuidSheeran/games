@@ -59,4 +59,24 @@
 </div>
     <h5 class="text-light bg-danger text-center" style="display: none;" id="scoreBoard"><strong>Score: <span id="score"></span></strong> </h5>
     <div id="game-board" style="display: none;"></div>
+    <div class="row" id="controler" style="display: none;">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="controller">
+                <button class="btn btn-sm btn-warning text-light d-lg-none btn-controler" id="moveUpBtn">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+                <div class="horizontal">
+                    <button class="btn btn-sm btn-primary d-lg-none btn-controler" style="margin-right: 60px;" id="moveLeftBtn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger d-lg-none btn-controler" style="margin-left: 60px;" id="moveRightBtn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <button class="btn btn-sm btn-success d-lg-none btn-controler" id="moveDownBtn">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 {% endblock %}
