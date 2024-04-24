@@ -10,6 +10,7 @@ const moveLeftBtn = document.getElementById('moveLeftBtn');
 const moveRightBtn = document.getElementById('moveRightBtn');
 const moveUpBtn = document.getElementById('moveUpBtn');
 const moveDownBtn = document.getElementById('moveDownBtn');
+const footer = document.getElementById('main-footer');
 
 
 function startGame(){
@@ -18,6 +19,7 @@ function startGame(){
     scoreBoard.style.display = 'block';
     gameBoard.style.display = 'grid';
     controler.style.display = 'block';
+    footer.style.display = 'none';
 
     // Move Up
     moveUpBtn.addEventListener('touchstart', () => {
