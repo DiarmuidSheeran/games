@@ -14,6 +14,7 @@ const moveUpBtn = document.getElementById('moveUpBtn');
 const moveDownBtn = document.getElementById('moveDownBtn');
 const footer = document.getElementById('main-footer');
 const gameOverMessage = document.getElementById('gameOverMessage');
+const returnToSnake = document.getElementById('returnToSnake');
 
 
 function startGame(){
@@ -99,6 +100,7 @@ function main(currentTime) {
         gameOverMessage.style.display = 'block';
         scoreBoard.style.display = 'none';
         finalScore.innerHTML = score;
+        returnToSnake.style.display = 'block';
     }
         
     window.requestAnimationFrame(main)

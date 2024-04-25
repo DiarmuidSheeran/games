@@ -6,29 +6,45 @@
 {% block content %}
 
 <div class="container-fluid mb-4 text-center">
-    <div class="card bg-warning mt-2 border border-light rounded pt-2 pb-2">
-        <strong><h1 class="text-dark header-fonts">Retro Arcade</h1></strong>
-        <strong><h4 class="text-dark text-light header-fonts">Choose a Game Below!</h4></strong>
-        <strong><i class="fa-solid fa-arrow-down fa-bounce fa-2xl" style="color: #000000;"></i></strong>
+    <div class="row">
+        <div class="col col-12">
+            <div class="card bg-warning mt-2 border border-light rounded pt-2 pb-2">
+                <strong><h1 class="text-dark header-fonts">Retro Arcade</h1></strong>
+                <strong><h4 class="text-dark text-light header-fonts">Choose a Game Below!</h4></strong>
+                <strong><i class="fa-solid fa-arrow-down fa-bounce fa-2xl" style="color: #000000;"></i></strong>
+            </div>
+        </div>
     </div>
-    <div class="card bg-danger mt-2 border border-light rounded pt-2 pb-2">
-        <a href="{% url 'space_invaders' %}">
-            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="img-fluid">
-        </a>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="card bg-danger mt-2 border border-light rounded" style="height: 400px;">
+                <div class="card-body d-flex flex-column">
+                    <a href="{% url 'space_invaders' %}">
+                        <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1710969198/space-invaders-logo_bhjso2.png' }}" alt="Space Invaders Logo" class="img-fluid" style="margin-top: 25%;">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card bg-success mt-2 border border-light rounded" style="height: 400px;">
+                <div class="card-body d-flex flex-column">
+                    <a href="{% url 'pacman' %}">
+                        <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711740827/pacman-logo_ylvrpu.png' }}" alt="PacMan Logo" class="img-fluid" style="margin-top: 25%;">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="card bg-info mt-2 border border-light rounded" style="height: 400px;">
+                <div class="card-body d-flex flex-column">
+                    <a href="{% url 'snake' %}">
+                        <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1712598045/snake-logo_vnarf4.png' }}" alt="Snake Game Logo" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div> 
     </div>
-    <div class="card bg-success mt-2 border border-light rounded pt-2 pb-2">
-        <h2>Game in Beta</h2>
-        <h3>Try Now!</h3>
-        <a href="{% url 'pacman' %}">
-            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711740827/pacman-logo_ylvrpu.png' }}" alt="PacMan Logo" class="img-fluid mt-2">
-        </a>
-    </div>
-    <div class="card bg-info mt-2 border border-light rounded pt-2 pb-2">
-        <h3 class="text-light">Snake</h3>
-        <a href="{% url 'snake' %}">
-            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1712598045/snake-logo_vnarf4.png' }}" alt="Snake Game Logo" class="img-fluid">
-        </a>
-    </div>
+    
 </div>
 <br>
 <br>
