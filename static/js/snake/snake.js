@@ -1,8 +1,10 @@
 let scoreDisplay = document.getElementById('score')
+let finalScore = document.getElementById('finalScore')
 let score = 0
 const startBtn = document.getElementById('startBtn');
 const levelSelect = document.getElementById('level');
 startBtn.addEventListener('click', startGame);
+const resultForm = document.querySelector('.form');
 let gameBoard = document.getElementById('game-board')
 let scoreBoard = document.getElementById('scoreBoard')
 let snakeStartGame = document.getElementById('snakeStartGame')
@@ -11,6 +13,7 @@ const moveRightBtn = document.getElementById('moveRightBtn');
 const moveUpBtn = document.getElementById('moveUpBtn');
 const moveDownBtn = document.getElementById('moveDownBtn');
 const footer = document.getElementById('main-footer');
+const gameOverMessage = document.getElementById('gameOverMessage');
 
 
 function startGame(){
@@ -88,10 +91,14 @@ window.addEventListener('keydown', e => {
 
 function main(currentTime) {
     if (gameOver){
-        if(confirm('You Lost. Press Ok to Restart')) {
-            window.location = '/snake/game/'
-        }
-        return 
+        document.getElementById('scoreInput').value = score;
+        resultForm.style.display = 'block';
+        gameBoard.style.display = 'none';
+        controler.style.display = 'none';
+        footer.style.display = 'block';
+        gameOverMessage.style.display = 'block';
+        scoreBoard.style.display = 'none';
+        finalScore.innerHTML = score;
     }
         
     window.requestAnimationFrame(main)

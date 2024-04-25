@@ -43,20 +43,23 @@
                     <button class="btn btn-primary border border-dark mb-2 mt-2 text-light" id="startBtn"><strong>Start Game</strong> </button>
                     <br>
                 </div>
+                <div class="bg-danger">
+                    <h2 class="text-light mt-2 bg-danger"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
+                    <ul class="list-unstyled">
+                        {% for game_score in game_scores %}
+                            <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-primary mb-4">
+                        <strong>View All</strong>
+                    </a>
+                </div>
                 
-                <h2 class="text-light text-decoration-underline pb-3 mt-2 bg-danger" style="border-bottom: red 4px solid; border-top: red 4px solid;"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
-                <ul>
-                    {% for game_score in game_scores %}
-                        <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
-                    {% endfor %}
-                </ul>
-                <a href="{% url 'space_invaders_leaderboard' %}" class="btn btn-primary mb-4">
-                    <strong>View All</strong>
-                </a>
             </div>
         </div>
     </div>
 </div>
+
     <h5 class="text-light bg-danger text-center" style="display: none;" id="scoreBoard"><strong>Score: <span id="score"></span></strong> </h5>
     <div id="game-board" style="display: none;"></div>
     <div class="row" id="controler" style="display: none;">
@@ -79,4 +82,32 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col col-12">
+            <div class="text-center" id="gameOverMessage" style="display: none;">
+                <h2>Game Over</h2>
+                <h3>Record Your Results Bellow</h3>
+                <h4>You Scored <span id="finalScore"></span> Points</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col col-md-12">
+            <form class="form mt-6" method="post" style="display: none;">
+                {% csrf_token %}
+                <div class="form-group d-flex justify-content-center"> 
+                    <input type="text" name="user_name" placeholder="Enter your name" class="mt-2 styled-input border-4 border-success rounded">
+                </div>
+                <div class="form-group"> 
+                    <input type="hidden" name="score" id="scoreInput">
+                </div>
+                <div class="form-group d-flex justify-content-center"> 
+                    <button type="submit" class="btn btn-success text-white w-50">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <hr>
+    <hr>
 {% endblock %}
