@@ -35,9 +35,20 @@ def snake(request):
     return render(request, template, context)
 
 def snake_leaderboard(request):
+
+    all_game_scores = SnakeGameScore.objects.all()
     
+    paginator = Paginator(all_game_scores, 15)
+    page_number = request.GET.get('page')
+    try:
+        game_scores = paginator.page(page_number)
+    except PageNotAnInteger:
+        game_scores = paginator.page(1)
+    except EmptyPage:
+        game_scores = paginator.page(paginator.num_pages)
+
     context = {
-      
+      'game_scores': game_scores,
     }
 
     template = 'snake/snake-leaderboard.html'

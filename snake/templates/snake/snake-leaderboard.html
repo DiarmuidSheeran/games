@@ -12,5 +12,44 @@
 {% block title %}Snake Leaderboard{% endblock %}
 
 {% block content %}
+<div class="container mb-4 text-center justify-content-center">      
+    <div class="row">
+        <div class="col col-md-12">
+            <div class="card text-white text-center bg-success" style="margin: 0; margin-bottom: 100px;">
+                <h2>Snake</h2>
+                <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1712598045/snake-logo_vnarf4.png' }}" alt="Snake Game Logo" class="img-fluid">
 
+                
+                <h2 class="text-white text-decoration-underline mt-3"><strong>Leaderboards</strong> <i class="fa-solid fa-crown" style="color: #FFD43B;"></i></h2>
+                <ul class="list-unstyled">
+                    {% for game_score in game_scores %}
+                        <li><h5><strong>{{ game_score.user_name }} - {{ game_score.score }}</strong></h5><p><small class="small-text">{{ game_score.created_at }}</small></p></li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'snake' %}" class="btn btn-lg btn-primary mt-4 text-light border border-light mb-3"><strong>Return to Game</strong></a>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 100px;">
+        <div class="col col-md-12 text-center">
+            <div class="pagination">
+                <span class="step-links">
+                    {% if game_scores.has_previous %}
+                        <a href="?page=1" class="btn btn-warning">&laquo; first</a>
+                        <a href="?page={{ game_scores.previous_page_number }}" class="btn btn-warning">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ game_scores.number }} of {{ game_scores.paginator.num_pages }}.
+                    </span>
+
+                    {% if game_scores.has_next %}
+                        <a href="?page={{ game_scores.next_page_number }}" class="btn btn-warning">next</a>
+                        <a href="?page={{ game_scores.paginator.num_pages }}" class="btn btn-warning">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
