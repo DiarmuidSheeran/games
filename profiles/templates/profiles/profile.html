@@ -67,22 +67,42 @@
             <div class="col-md-4 mb-3">
                 <div class="card bg-success">
                     <div class="card-body">
-                        <h5 class="card-title text-center">GAME COMING SOON!</h5>
-                        <p class="text-center">Currently in Development</p>
-                        <ul class="list-unstyled">
-                            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711487172/coming-soon_izekzy.png' }}" alt="Space Invaders Logo" class="img-fluid">
+                        <h5 class="card-title text-center">Pacman</h5>
+                        <p class="text-center">Your Recorded Scores</p>
+                        <ul class="list-unstyled" id="game-scores">
+                            {% for game_score in profile.user.pacmangamescore_set.all %}
+                                {% if forloop.counter <= 4 %}
+                                    <li class="border-bottom border-dark mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
+                                {% else %}
+                                    <li class="border-bottom border-dark d-none game-one-more-scores mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
+                        {% if profile.user.gamescore_set.all.count > 4 %}
+                            <button class="btn btn-primary btn-block mt-3" id="expandButtonGameOne">Show More Scores</button>
+                        {% endif %}
+                        <button class="btn btn-secondary btn-block mt-3 d-none" id="closeButtonGameOne">Close</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-3">
                 <div class="card bg-info">
                     <div class="card-body">
-                        <h5 class="card-title text-center">GAME COMING SOON!</h5> 
-                        <p class="text-center">Currently in Development</p>
-                        <ul class="list-unstyled">
-                            <img src="{{ 'https://res.cloudinary.com/drmbgol8n/image/upload/v1711487172/coming-soon_izekzy.png' }}" alt="Space Invaders Logo" class="img-fluid">
+                        <h5 class="card-title text-center">Snake</h5>
+                        <p class="text-center">Your Recorded Scores</p>
+                        <ul class="list-unstyled" id="game-scores">
+                            {% for game_score in profile.user.snakegamescore_set.all %}
+                                {% if forloop.counter <= 4 %}
+                                    <li class="border-bottom border-dark mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
+                                {% else %}
+                                    <li class="border-bottom border-dark d-none game-one-more-scores mb-2"><strong>Score: {{ game_score.score }}</strong> <br>{{ game_score.created_at }}</li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
+                        {% if profile.user.gamescore_set.all.count > 4 %}
+                            <button class="btn btn-primary btn-block mt-3" id="expandButtonGameOne">Show More Scores</button>
+                        {% endif %}
+                        <button class="btn btn-secondary btn-block mt-3 d-none" id="closeButtonGameOne">Close</button>
                     </div>
                 </div>
             </div>
