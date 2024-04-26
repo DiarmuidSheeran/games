@@ -16,6 +16,15 @@ const footer = document.getElementById('main-footer');
 const gameOverMessage = document.getElementById('gameOverMessage');
 const returnToSnake = document.getElementById('returnToSnake');
 
+document.addEventListener('DOMContentLoaded', function() {
+    const lastSelectedLevel = localStorage.getItem('selectedLevel');
+    if (lastSelectedLevel !== null) {
+        document.getElementById('level').value = lastSelectedLevel;
+    }
+    document.getElementById('level').addEventListener('change', function() {
+        localStorage.setItem('selectedLevel', this.value);
+    });
+});
 
 function startGame(){
     let selectedLevel = levelSelect.value;
